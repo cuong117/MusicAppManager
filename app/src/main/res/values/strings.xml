@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MusicApp Manager</string>
+    <string name="title_activity_main">MusicApp Manager</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Upload Song</string>
+    <string name="second_fragment_label">Infomation</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="title">Title:</string>
+    <string name="artist">Artist:</string>
+    <string name="upload">Upload</string>
+</resources>

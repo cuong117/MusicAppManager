@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/change_bg.xml" value="0.176" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/hint.xml" value="0.176" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/ic_music_player.xml" value="0.176" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/device_music_fragment.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/form_upload_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/fragment_first.xml" value="0.264" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/fragment_second.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/playlist_items.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/row.xml" value="0.264" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
