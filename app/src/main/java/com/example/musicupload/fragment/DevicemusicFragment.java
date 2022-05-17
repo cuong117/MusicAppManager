@@ -79,7 +79,8 @@ public class DevicemusicFragment extends Fragment {
     private SongAdapter getMusic(){
         ContentResolver contentResolver = ((MainActivity)getActivity()).getContentResolver();
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        Cursor cursor = contentResolver.query(uri, null, null, null, null);
+        Cursor cursor = contentResolver.query(uri, null, MediaStore.Audio.Media.IS_MUSIC + "!= 0"
+                , null, MediaStore.Audio.Media.TITLE + " ASC");
         List<Song> songs = new ArrayList<>();
         if (cursor != null && cursor.moveToFirst()){
             int title =cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
