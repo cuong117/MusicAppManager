@@ -5,12 +5,12 @@ import android.net.Uri;
 public class Song {
     private String title;
     private String subTitle;
-    private Uri link;
+    private String link;
 
     public Song(){
     }
 
-    public Song(String title, String subTitle, Uri link) {
+    public Song(String title, String subTitle, String link) {
         this.title = title;
         this.subTitle = subTitle;
         this.link = link;
@@ -32,11 +32,11 @@ public class Song {
         this.subTitle = subTitle;
     }
 
-    public Uri getLink() {
+    public String  getLink() {
         return link;
     }
 
-    public void setLink(Uri link) {
+    public void setLink(String link) {
         this.link = link;
     }
 }

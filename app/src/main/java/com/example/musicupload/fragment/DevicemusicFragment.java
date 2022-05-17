@@ -52,16 +52,15 @@ public class DevicemusicFragment extends Fragment {
         songList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.v("aaaa", adapterView.getItemAtPosition(i) + "");
                 if (view.getId() == R.id.btn_upload){
                     Song song = (Song) adapterView.getItemAtPosition(i);
                     String name = song.getTitle();
                     String subTitle = song.getSubTitle();
-                    Uri path = song.getLink();
+                    String path = song.getLink();
                     Bundle bundle = new Bundle();
                     bundle.putString("title", name);
                     bundle.putString("subTitle", subTitle);
-                    bundle.putParcelable("path",path);
+                    bundle.putString("path",path);
 //                    FormUploadFragment formUploadFragment = new FormUploadFragment();
                     getParentFragmentManager().setFragmentResult("info", bundle);
                     NavHostFragment.findNavController(DevicemusicFragment.this)
@@ -85,15 +84,12 @@ public class DevicemusicFragment extends Fragment {
         if (cursor != null && cursor.moveToFirst()){
             int title =cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int artist = cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-            int path = cursor.getColumnIndex(MediaStore.Audio.Media._ID);
-            Uri audioUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                    cursor.getInt(path));
-            int count = 0;
+            int path = cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+//            Uri audioUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+//                    cursor.getInt(path));
             do{
-                songs.add(new Song(cursor.getString(title), cursor.getString(artist), audioUri));
-                count++;
+                songs.add(new Song(cursor.getString(title), cursor.getString(artist), cursor.getString(path)));
             }while (cursor.moveToNext());
-            Log.v("bbbb", count + "");
             cursor.close();
         }
         return new SongAdapter(getContext(), songs);

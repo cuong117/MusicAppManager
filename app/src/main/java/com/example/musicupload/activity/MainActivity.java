@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        
+
     }
 
     @Override
@@ -64,14 +64,8 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST);
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
                     Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                ActivityCompat.requestPermissions(MainActivity.this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST);
-            } else {
-                if (ContextCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    Snackbar snackbar = Snackbar.make(main, "Provide the Storage Permission", Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                }
+                Snackbar snackbar = Snackbar.make(main, "Provide the Storage Permission", Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
         }
     }
@@ -94,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         Snackbar snackbar = Snackbar.make(main, "Provide the Storage Permission", Snackbar.LENGTH_LONG);
                         snackbar.show();
-                        finish();
                     }
                 }
         }
