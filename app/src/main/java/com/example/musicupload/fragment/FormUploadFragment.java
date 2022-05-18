@@ -35,7 +35,6 @@ public class FormUploadFragment extends Fragment {
     private EditText title;
     private EditText subtitle;
     private Button upload;
-    private Button play;
     private StorageReference store;
     private StorageTask task;
     private DatabaseReference db;
@@ -51,7 +50,6 @@ public class FormUploadFragment extends Fragment {
         title = binding.editTitle;
         subtitle = binding.editArtist;
         upload = binding.upload;
-        play = binding.play;
         db = FirebaseDatabase.getInstance().getReference().child("songs");
         store = FirebaseStorage.getInstance().getReference().child("songs");
         getParentFragmentManager().setFragmentResultListener("info",this, new FragmentResultListener(){
@@ -72,21 +70,6 @@ public class FormUploadFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MediaPlayer mediaPlayer = new MediaPlayer();
-                try {
-                    Log.v("path11", song.getLink().toString());
-                    mediaPlayer.setDataSource(song.getLink().toString());
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +82,8 @@ public class FormUploadFragment extends Fragment {
                             @Override
                             public void onSuccess(Uri uri) {
                                 Log.v("putfile", "success");
+                                song.setTitle(title.getText().toString());
+                                song.setSubTitle(subtitle.getText().toString());
                                 song.setLink(uri.toString());
                                 String id = db.push().getKey();
                                 db.child(id).setValue(song);

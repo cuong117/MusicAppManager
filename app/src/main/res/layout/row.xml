@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/change_bg"
     android:padding="10dp">
 
     <ImageView
@@ -17,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_toStartOf="@id/img_playing"
         android:layout_toEndOf="@id/ic_music_list"
         android:singleLine="true"
         android:text="Title"
@@ -38,12 +38,22 @@
         android:textStyle="normal" />
 
     <ImageView
+        android:id="@+id/img_playing"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/btn_upload"
+        android:src="@drawable/ic_music_playing"
+        android:visibility="invisible" />
+
+    <ImageView
         android:id="@+id/btn_upload"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:background="@drawable/change_bg"
-        android:src="@drawable/ic_upload"></ImageView>
+        android:src="@drawable/ic_upload"/>
 
 
 </RelativeLayout>
