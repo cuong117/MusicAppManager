@@ -3,6 +3,7 @@ package com.example.musicupload.fragment;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import com.example.musicupload.adapter.SongAdapter;
 import com.example.musicupload.databinding.DeviceMusicFragmentBinding;
 import com.example.musicupload.models.Song;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +36,8 @@ public class DevicemusicFragment extends Fragment {
 
     private DeviceMusicFragmentBinding binding;
     private ListView songList;
+    private ImageView playing;
+    private MediaPlayer mediaPlayer;
 
     @Override
     public View onCreateView(
@@ -42,6 +47,7 @@ public class DevicemusicFragment extends Fragment {
 
         binding = DeviceMusicFragmentBinding.inflate(inflater, container, false);
         songList = binding.songList;
+        mediaPlayer = new MediaPlayer();
         setSongList();
         return binding.getRoot();
 
@@ -61,10 +67,34 @@ public class DevicemusicFragment extends Fragment {
                     bundle.putString("title", name);
                     bundle.putString("subTitle", subTitle);
                     bundle.putString("path",path);
-//                    FormUploadFragment formUploadFragment = new FormUploadFragment();
+                    if (mediaPlayer != null){
+                        mediaPlayer.release();
+                    }
                     getParentFragmentManager().setFragmentResult("info", bundle);
                     NavHostFragment.findNavController(DevicemusicFragment.this)
                             .navigate(R.id.action_DeviceFragment_to_FormFragment);
+                } else {
+                    ImageView imgView = view.findViewById(R.id.img_playing);
+                    if(playing != null && playing == imgView){
+                        playing.setVisibility(View.INVISIBLE);
+                        playing = null;
+                        mediaPlayer.stop();
+                        return;
+                    }else if (playing != null){
+                        playing.setVisibility(View.INVISIBLE);
+                    }
+                    imgView.setVisibility(View.VISIBLE);
+                    playing = imgView;
+                    Song song = (Song) adapterView.getItemAtPosition(i);
+                    try {
+                        mediaPlayer.reset();
+                        mediaPlayer.setDataSource(song.getLink());
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
