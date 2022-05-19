@@ -10,4 +10,6 @@
     <string name="title">Title:</string>
     <string name="artist">Artist:</string>
     <string name="upload">Upload</string>
+    <string name="upload_song">Upload Song</string>
+    <string name="cloud_song">Cloud Song</string>
 </resources>

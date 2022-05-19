@@ -7,21 +7,25 @@
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/hint.xml" value="0.176" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/ic_music_player.xml" value="0.176" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/activity_left_menu.xml" value="0.10989583333333333" />
-        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/activity_main.xml" value="0.152" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/app_bar_left_menu.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/cloud_fragment.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/content_left_menu.xml" value="0.25" />
-        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/content_main.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/content_main.xml" value="0.2" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/device_music_fragment.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/form_upload_fragment.xml" value="0.264" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/fragment_first.xml" value="0.264" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/fragment_gallery.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/fragment_home.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/fragment_second.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/nav_bar.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/nav_bar_layout.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/nav_header_left_menu.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/playlist_items.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/layout/row.xml" value="0.264" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/menu/activity_main_drawer.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/menu/left_menu.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/menu/nav_view_menu.xml" value="0.24895833333333334" />
       </map>
     </option>
   </component>

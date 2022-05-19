@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/DeviceFragment">
+    app:startDestination="@id/nav_upload">
 
     <fragment
-        android:id="@+id/DeviceFragment"
+        android:id="@+id/nav_upload"
         android:name="com.example.musicupload.fragment.DevicemusicFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/device_music_fragment">
@@ -23,6 +23,14 @@
 
         <action
             android:id="@+id/action_FormFragment_to_DeviceFragment"
-            app:destination="@id/DeviceFragment" />
+            app:destination="@id/nav_upload" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_cloud"
+        android:name="com.example.musicupload.fragment.CloudFragment"
+        android:label="Cloud Song"
+        tools:layout="@layout/cloud_fragment">
+
     </fragment>
 </navigation>

@@ -1,7 +1,10 @@
 package com.example.musicupload.fragment;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
+import com.example.musicupload.R;
 import com.example.musicupload.databinding.FormUploadFragmentBinding;
 import com.example.musicupload.models.Song;
 import com.google.android.gms.tasks.OnCanceledListener;
@@ -22,11 +27,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.google.firebase.storage.UploadTask.TaskSnapshot;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 
 public class FormUploadFragment extends Fragment {
@@ -73,6 +82,11 @@ public class FormUploadFragment extends Fragment {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProgressDialog progressDialog = new ProgressDialog(getContext(), 5);
+                progressDialog.setTitle("Uploading");
+                progressDialog.setMessage("0%");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 StorageReference storageReference = store.child(System.currentTimeMillis() + "");
                 task = storageReference.putFile(Uri.fromFile(new File(song.getLink())));
                 task.addOnSuccessListener(new OnSuccessListener() {
@@ -87,15 +101,20 @@ public class FormUploadFragment extends Fragment {
                                 song.setLink(uri.toString());
                                 String id = db.push().getKey();
                                 db.child(id).setValue(song);
-                                Toast.makeText(getContext(), "uploaded", Toast.LENGTH_SHORT).show();
+                                if(progressDialog.isShowing()){
+                                    progressDialog.dismiss();
+                                }
+                                Toast.makeText(getContext(), "Upload Success", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 });
-                task.addOnCanceledListener(new OnCanceledListener() {
+                task.addOnProgressListener(new OnProgressListener<TaskSnapshot>() {
+
                     @Override
-                    public void onCanceled() {
-                        Log.v("putfile", "error");
+                    public void onProgress(@NonNull TaskSnapshot snapshot) {
+                        double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                        progressDialog.setMessage((int)progress + "%");
                     }
                 });
             }
@@ -106,6 +125,37 @@ public class FormUploadFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private class UploadTask extends AsyncTask<Song, Void, String>{
+        private Context context;
+        private ProgressDialog progressDialog;
+
+        public UploadTask(Context context){
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = new ProgressDialog(context, 5);
+            this.progressDialog.setMessage("Loading...");
+            this.progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(Song... songs) {
+
+            return "Success";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (this.progressDialog.isShowing()){
+                this.progressDialog.dismiss();
+            }
+        }
     }
 
 }

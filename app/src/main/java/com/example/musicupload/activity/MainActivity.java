@@ -5,7 +5,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.example.musicupload.R;
+import com.example.musicupload.databinding.NavBarLayoutBinding;
 import com.example.musicupload.fragment.DevicemusicFragment;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -28,25 +31,27 @@ import com.example.musicupload.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
-    private CoordinatorLayout main;
+    private AppBarConfiguration appBarConfiguration1;
+    private NavBarLayoutBinding binding;
+    private DrawerLayout main;
     private final int MY_PERMISSION_REQUEST = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        main = binding.main;
+        binding = NavBarLayoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        main = binding.drawerLayout;
+        NavigationView navigationView =binding.navView;
         grantedPermission();
 
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
+        setSupportActionBar(binding.main.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_upload, R.id.nav_cloud).setOpenableLayout(main).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
     }
 
