@@ -65,7 +65,6 @@ public class FormUploadFragment extends Fragment {
         getParentFragmentManager().setFragmentResultListener("info",this, new FragmentResultListener(){
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                Log.v("send", "aaaaa");
                 String _title = result.getString("title");
                 String _subTitle = result.getString("subTitle");
                 title.setText(_title);
@@ -84,7 +83,7 @@ public class FormUploadFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ProgressDialog progressDialog = new ProgressDialog(getContext(), 5);
-                progressDialog.setMessage("Upload: 0%");
+                progressDialog.setMessage("Uploading... 0%");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
                 StorageReference storageReference = store.child(System.currentTimeMillis() + "");
@@ -113,7 +112,7 @@ public class FormUploadFragment extends Fragment {
                     @Override
                     public void onProgress(@NonNull TaskSnapshot snapshot) {
                         double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                        progressDialog.setMessage("Upload: " + (int)progress + "%");
+                        progressDialog.setMessage("Uploading... " + (int)progress + "%");
                     }
                 });
             }
