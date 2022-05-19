@@ -72,7 +72,7 @@ public class DevicemusicFragment extends Fragment {
                     }
                     getParentFragmentManager().setFragmentResult("info", bundle);
                     NavHostFragment.findNavController(DevicemusicFragment.this)
-                            .navigate(R.id.action_DeviceFragment_to_FormFragment);
+                            .navigate(R.id.action_DeviceFragment_to_FormUploadFragment);
                 } else {
                     ImageView imgView = view.findViewById(R.id.img_playing);
                     if(playing != null && playing == imgView){
@@ -104,6 +104,9 @@ public class DevicemusicFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        if (mediaPlayer != null){
+            mediaPlayer.release();
+        }
     }
 
     private SongAdapter getMusic(){

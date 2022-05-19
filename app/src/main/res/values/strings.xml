@@ -12,4 +12,6 @@
     <string name="upload">Upload</string>
     <string name="upload_song">Upload Song</string>
     <string name="cloud_song">Cloud Song</string>
+    <string name="update">update</string>
+    <string name="updateInfo">Update Information</string>
 </resources>

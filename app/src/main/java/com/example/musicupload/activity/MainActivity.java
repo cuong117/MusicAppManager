@@ -31,7 +31,6 @@ import com.example.musicupload.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private AppBarConfiguration appBarConfiguration1;
     private NavBarLayoutBinding binding;
     private DrawerLayout main;
     private final int MY_PERMISSION_REQUEST = 100;

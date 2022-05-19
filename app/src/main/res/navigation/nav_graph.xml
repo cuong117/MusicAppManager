@@ -12,18 +12,14 @@
         tools:layout="@layout/device_music_fragment">
 
         <action
-            android:id="@+id/action_DeviceFragment_to_FormFragment"
-            app:destination="@id/FormFragment" />
+            android:id="@+id/action_DeviceFragment_to_FormUploadFragment"
+            app:destination="@id/FormUploadFragment" />
     </fragment>
     <fragment
-        android:id="@+id/FormFragment"
+        android:id="@+id/FormUploadFragment"
         android:name="com.example.musicupload.fragment.FormUploadFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/form_upload_fragment">
-
-        <action
-            android:id="@+id/action_FormFragment_to_DeviceFragment"
-            app:destination="@id/nav_upload" />
     </fragment>
 
     <fragment
@@ -32,5 +28,19 @@
         android:label="Cloud Song"
         tools:layout="@layout/cloud_fragment">
 
+        <action
+            android:id="@+id/nav_cloud_to_FormUpdateFragment"
+            app:destination="@id/FormUpdateFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/FormUpdateFragment"
+        tools:layout="@layout/form_update_fragment"
+        android:name="com.example.musicupload.fragment.FormUpdateFragment"
+        android:label="@string/updateInfo">
+
+        <action
+            android:id="@+id/FormUpdateFragment_to_nav_cloud"
+            app:destination="@id/nav_cloud"/>
     </fragment>
 </navigation>

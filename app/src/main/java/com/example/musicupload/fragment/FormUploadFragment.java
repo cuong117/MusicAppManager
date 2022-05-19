@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentResultListener;
 import com.example.musicupload.R;
 import com.example.musicupload.databinding.FormUploadFragmentBinding;
 import com.example.musicupload.models.Song;
+import com.example.musicupload.models.SongItem;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -83,8 +84,7 @@ public class FormUploadFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ProgressDialog progressDialog = new ProgressDialog(getContext(), 5);
-                progressDialog.setTitle("Uploading");
-                progressDialog.setMessage("0%");
+                progressDialog.setMessage("Upload: 0%");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
                 StorageReference storageReference = store.child(System.currentTimeMillis() + "");
@@ -96,11 +96,10 @@ public class FormUploadFragment extends Fragment {
                             @Override
                             public void onSuccess(Uri uri) {
                                 Log.v("putfile", "success");
-                                song.setTitle(title.getText().toString());
-                                song.setSubTitle(subtitle.getText().toString());
-                                song.setLink(uri.toString());
+                                SongItem songItem = new SongItem(title.getText().toString()
+                                        , subtitle.getText().toString(), uri.toString());
                                 String id = db.push().getKey();
-                                db.child(id).setValue(song);
+                                db.child(id).setValue(songItem);
                                 if(progressDialog.isShowing()){
                                     progressDialog.dismiss();
                                 }
@@ -114,7 +113,7 @@ public class FormUploadFragment extends Fragment {
                     @Override
                     public void onProgress(@NonNull TaskSnapshot snapshot) {
                         double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                        progressDialog.setMessage((int)progress + "%");
+                        progressDialog.setMessage("Upload: " + (int)progress + "%");
                     }
                 });
             }

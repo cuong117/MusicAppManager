@@ -17,12 +17,12 @@ import com.example.musicupload.models.Song;
 
 import java.util.List;
 
-public class SongAdapter extends ArrayAdapter<Song> {
+public class CloudSongAdapter extends ArrayAdapter<Song> {
     private Context context;
     private List<Song> songList;
 
-    public SongAdapter(@NonNull Context context, List<Song> songList) {
-        super(context, R.layout.row_device_song, songList);
+    public CloudSongAdapter(@NonNull Context context, List<Song> songList) {
+        super(context, R.layout.row_cloud_song, songList);
         this.context = context;
         this.songList = songList;
     }
@@ -31,19 +31,23 @@ public class SongAdapter extends ArrayAdapter<Song> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_device_song, parent, false);
-        Song song = songList.get(position);
+        View view = inflater.inflate(R.layout.row_cloud_song, parent, false);
         TextView title = view.findViewById(R.id.music_name);
         TextView subTitle = view.findViewById(R.id.music_subtitle);
-        ImageView upload = view.findViewById(R.id.btn_upload);
+        ImageView delete = view.findViewById(R.id.btn_delete);
+        ImageView update = view.findViewById(R.id.btn_update);
+        Song song = songList.get(position);
         title.setText(song.getTitle());
         subTitle.setText(song.getSubTitle());
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ListView) parent).performItemClick(view, position, 0);
-            }
+
+        delete.setOnClickListener(view1 -> {
+            ((ListView)parent).performItemClick(view1, position, 0);
         });
+
+        update.setOnClickListener(view1 -> {
+            ((ListView)parent).performItemClick(view1, position, 0);
+        });
+
         return view;
     }
 }
