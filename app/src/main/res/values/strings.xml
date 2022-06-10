@@ -14,4 +14,7 @@
     <string name="cloud_song">Cloud Song</string>
     <string name="update">update</string>
     <string name="updateInfo">Update Information</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="loginbtn">LOGIN</string>
 </resources>
