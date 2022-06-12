@@ -17,4 +17,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="loginbtn">LOGIN</string>
+    <string name="user">Manage User</string>
+    <string name="form_user_fragment">User Management</string>
 </resources>

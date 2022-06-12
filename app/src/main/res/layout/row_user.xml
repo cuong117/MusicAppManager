@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
-
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView
-        android:id="@+id/ic_music_list"
+        android:id="@+id/ic_user_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:src="@drawable/ic_music_player" />
-
+        android:src="@drawable/ic_baseline_person_outline_24" />
     <TextView
-        android:id="@+id/music_name"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_toStartOf="@id/img_playing"
-        android:layout_toEndOf="@id/ic_music_list"
+        android:layout_toStartOf="@id/img_user_update"
+        android:layout_toEndOf="@id/ic_user_list"
         android:singleLine="true"
         android:text="Title"
         android:textColor="@color/color_black"
@@ -25,42 +23,33 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/music_subtitle"
+        android:id="@+id/user_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/music_name"
+        android:layout_below="@id/user_name"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@id/ic_music_list"
+        android:layout_toEndOf="@id/ic_user_list"
         android:singleLine="true"
         android:text="SubTitle"
         android:textColor="@color/gray_color"
         android:textSize="12sp"
         android:textStyle="normal" />
-
     <ImageView
-        android:id="@+id/img_playing"
+        android:id="@+id/img_user_delete"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:layout_toStartOf="@id/btn_update"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_update"
+        android:visibility="invisible" />
+    <ImageView
+        android:id="@+id/img_user_update"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/img_user_delete"
         android:src="@drawable/ic_music_playing"
         android:visibility="invisible" />
-
-    <ImageView
-        android:id="@+id/btn_update"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="10dp"
-        android:layout_toStartOf="@id/btn_delete"
-        android:src="@drawable/ic_update" />
-
-    <ImageView
-        android:id="@+id/btn_delete"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_delete"/>
-
-
 </RelativeLayout>

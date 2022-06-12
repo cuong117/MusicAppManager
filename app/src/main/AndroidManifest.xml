@@ -35,6 +35,7 @@
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
             android:exported="true"
+            android:theme="@style/Theme.MusicUpload.NoActionBar"
             ></activity>
     </application>
 
