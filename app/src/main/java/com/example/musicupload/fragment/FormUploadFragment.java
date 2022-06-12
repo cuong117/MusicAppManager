@@ -124,36 +124,4 @@ public class FormUploadFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-    private class UploadTask extends AsyncTask<Song, Void, String>{
-        private Context context;
-        private ProgressDialog progressDialog;
-
-        public UploadTask(Context context){
-            this.context = context;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            this.progressDialog = new ProgressDialog(context, 5);
-            this.progressDialog.setMessage("Loading...");
-            this.progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(Song... songs) {
-
-            return "Success";
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            if (this.progressDialog.isShowing()){
-                this.progressDialog.dismiss();
-            }
-        }
-    }
-
 }

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import com.example.musicupload.R;
 import com.example.musicupload.models.Song;
 
+import java.util.Collections;
 import java.util.List;
 
 public class CloudSongAdapter extends ArrayAdapter<Song> {
@@ -49,5 +50,9 @@ public class CloudSongAdapter extends ArrayAdapter<Song> {
         });
 
         return view;
+    }
+
+    public void sort(){
+        Collections.sort(songList);
     }
 }

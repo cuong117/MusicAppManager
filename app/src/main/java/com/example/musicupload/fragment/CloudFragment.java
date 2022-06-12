@@ -3,6 +3,7 @@ package com.example.musicupload.fragment;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -53,6 +54,8 @@ public class CloudFragment extends Fragment {
         binding = CloudFragmentBinding.inflate(inflater, container, false);
         cloudSongList = binding.songListCloud;
         db = FirebaseDatabase.getInstance().getReference();
+        adapter = new CloudSongAdapter(getContext(), new ArrayList<>());
+        cloudSongList.setAdapter(adapter);
         getMusic();
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -117,18 +120,17 @@ public class CloudFragment extends Fragment {
         curDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Song> songsList = new ArrayList();
+                adapter.clear();
                 for (DataSnapshot dt: snapshot.getChildren()){
                     Song s = dt.getValue(Song.class);
                     s.setKey(dt.getKey());
                     if (s.getSubTitle() == null){
                         s.setSubTitle("<unknown>");
                     }
-                    songsList.add(s);
+                    adapter.insert(s, adapter.getCount());
                 }
-                Collections.sort(songsList);
-                adapter = new CloudSongAdapter(getContext(), songsList);
-                cloudSongList.setAdapter(adapter);
+                adapter.sort();
+                adapter.notifyDataSetChanged();
                 if (progressDialog != null && progressDialog.isShowing()){
                     progressDialog.dismiss();
                 }
