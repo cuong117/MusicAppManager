@@ -37,8 +37,8 @@ public class UserAdapter extends ArrayAdapter<User> {
         TextView email = view.findViewById(R.id.user_email);
         TextView name = view.findViewById(R.id.user_name);
         TextView level = view.findViewById(R.id.user_level);
-        ImageView update = view.findViewById(R.id.btn_update);
-        ImageView delete = view.findViewById(R.id.btn_delete);
+        ImageView update = view.findViewById(R.id.img_user_update);
+        ImageView delete = view.findViewById(R.id.img_user_delete);
         name.setText(user.getName());
         email.setText(user.getEmail());
         if (user.isAdmin()) {
@@ -47,6 +47,12 @@ public class UserAdapter extends ArrayAdapter<User> {
             level.setText("User");
         }
         update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ListView) parent).performItemClick(view, position, 0);
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((ListView) parent).performItemClick(view, position, 0);

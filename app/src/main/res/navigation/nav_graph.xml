@@ -49,7 +49,22 @@
         android:name="com.example.musicupload.fragment.UserFragment"
         android:label="@string/form_user_fragment"
         tools:layout="@layout/user_fragment">
-
+        <action
+            android:id="@+id/nav_user_to_FormUserFragment"
+            app:destination="@id/FormUserFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/FormUserFragment"
+        android:name="com.example.musicupload.fragment.FormUserFragment"
+        android:label="@string/form_user_fragment"
+        tools:layout="@layout/form_user_fragment">
+        <action
+            android:id="@+id/FormUserFragment_to_nav_user"
+            app:destination="@id/nav_user"/>
+    </fragment>
+
+
+
 
 </navigation>

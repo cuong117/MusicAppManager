@@ -1,6 +1,8 @@
 package com.example.musicupload.models;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     String email;
     String pass;
     String name;
