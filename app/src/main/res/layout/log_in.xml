@@ -61,32 +61,5 @@
         android:layout_margin="20dp"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signup_text"
-        android:layout_below="@id/loginbtn"
-        android:text="Don't have account?"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signup"
-        android:layout_toRightOf="@id/signup_text"
-        android:text="Sign up"
-        android:textColor="#6EF39E"
-        android:layout_alignTop="@id/signup_text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgotpass"
-        android:layout_below="@id/signup_text"
-        android:text="Forgot password?"
-        android:textColor="#6EF39E"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"/>
-
 
 </RelativeLayout>

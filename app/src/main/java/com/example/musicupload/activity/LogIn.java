@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.musicupload.R;
-import com.example.musicupload.account.Account;
+import com.example.musicupload.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -24,8 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.storage.FirebaseStorage;
+
 public class LogIn extends AppCompatActivity {
     FirebaseUser fUser;
     FirebaseAuth fAuth;
@@ -55,9 +54,9 @@ public class LogIn extends AppCompatActivity {
                                                                 db.addListenerForSingleValueEvent(new ValueEventListener() {
                                                                     @Override
                                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                        Account account =snapshot.getValue(Account.class);
-                                                                        Log.v("Account", String.valueOf(account.isAdmin()));
-                                                                        if (account.isAdmin() == true) {
+                                                                        User user =snapshot.getValue(User.class);
+                                                                        Log.v("Account", String.valueOf(user.isAdmin()));
+                                                                        if (user.isAdmin() == true) {
                                                                             startActivity(new Intent(LogIn.this, MainActivity.class));
                                                                             finish();
                                                                         } else {
