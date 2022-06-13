@@ -5,14 +5,16 @@ public class User {
     String pass;
     String name;
     boolean admin;
+
     public User() {
 
     }
+
     public User(boolean admin, String email, String password, String name) {
+        this.admin = admin;
         this.email = email;
         this.pass = password;
         this.name = name;
-        this.admin = admin;
     }
 
     public String getName() {
@@ -45,5 +47,14 @@ public class User {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "admin='" + admin + '\'' +
+                ",pass='" + pass + '\'' +
+                ",name" + name + '\'' +
+                ",email" + email +
+                "}";
     }
 }

@@ -55,7 +55,6 @@ public class LogIn extends AppCompatActivity {
                                                                     @Override
                                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                                         User user =snapshot.getValue(User.class);
-                                                                        Log.v("Account", String.valueOf(user.isAdmin()));
                                                                         if (user.isAdmin() == true) {
                                                                             startActivity(new Intent(LogIn.this, MainActivity.class));
                                                                             finish();
