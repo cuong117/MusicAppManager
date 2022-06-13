@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v("Main", "Alo");
         super.onCreate(savedInstanceState);
 
         binding = NavBarLayoutBinding.inflate(getLayoutInflater());
@@ -48,10 +50,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.main.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_upload, R.id.nav_cloud).setOpenableLayout(main).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_upload, R.id.nav_cloud, R.id.nav_user).setOpenableLayout(main).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
     }
 
     @Override

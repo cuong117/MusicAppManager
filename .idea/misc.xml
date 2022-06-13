@@ -3,6 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/drawable/ic_music_player.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/cloud_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/device_music_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/form_update_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/form_upload_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/log_in.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/nav_bar_layout.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/row_cloud_song.xml" value="0.25" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/row_device_song.xml" value="0.22" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/row_user.xml" value="0.22" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/layout/user_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/admin/Desktop/MusicAppManager-master/app/src/main/res/menu/nav_view_menu.xml" value="0.33" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/change_bg.xml" value="0.176" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/hint.xml" value="0.176" />
         <entry key="..\:/Users/dangc/AndroidStudioProjects/MusicUpload/app/src/main/res/drawable/ic_music_player.xml" value="0.176" />

@@ -9,5 +9,8 @@
         <item
             android:id="@+id/nav_cloud"
             android:title="@string/cloud_song"/>
+        <item
+            android:id="@+id/nav_user"
+            android:title="@string/user"/>
     </group>
 </menu>

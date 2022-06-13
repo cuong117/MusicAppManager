@@ -19,10 +19,11 @@
         android:theme="@style/Theme.MusicUpload"
         tools:targetApi="31" >
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.LogIn"
             android:exported="true"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.MusicUpload.NoActionBar" >
+            android:theme="@style/Theme.MusicUpload.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -30,6 +31,12 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/title_activity_main"
+            android:exported="true"
+            android:theme="@style/Theme.MusicUpload.NoActionBar"
+            ></activity>
     </application>
 
 </manifest>
