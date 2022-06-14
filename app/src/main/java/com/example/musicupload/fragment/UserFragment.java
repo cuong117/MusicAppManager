@@ -76,12 +76,9 @@ public class UserFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 FirebaseUser cur_user = FirebaseAuth.getInstance().getCurrentUser();
                 User user = (User) adapterView.getItemAtPosition(i);
-                String name = user.getName();
                 String email = user.getEmail();
-                String level = user.isAdmin()?"admin":"user";
                 if (view.getId() == R.id.img_user_update){
-                    //switchToFormUpdate(user);
-                    Toast.makeText(getContext(), "User update button clicked", Toast.LENGTH_SHORT).show();
+                    switchToFormUpdate(user);
                 } else if (view.getId() == R.id.img_user_delete){
                     new AlertDialog.Builder(getContext())
                             .setTitle("Delete user?")
@@ -148,6 +145,9 @@ public class UserFragment extends Fragment {
     }
 
     private void switchToFormUpdate(User user){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("info", user);
+        getParentFragmentManager().setFragmentResult("user", bundle);
         NavHostFragment.findNavController(UserFragment.this)
                 .navigate(R.id.nav_user_to_FormUserFragment);
     }

@@ -7,10 +7,10 @@
     tools:context=".fragment.UserFragment">
 
     <TextView
-        android:id="@+id/user_fragment_name"
+        android:id="@+id/email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User name: "
+        android:text="Email: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
@@ -19,27 +19,71 @@
         android:textColor="@color/black"
         android:labelFor="@id/edit_title"/>
 
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/email_text"
+        app:layout_constraintTop_toBottomOf="@id/email_text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:enabled="false"
+        android:inputType="text"/>
     <TextView
-        android:id="@+id/user_fragment_level"
+        android:id="@+id/user_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level: "
+        android:text="User name: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_fragment_name"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:labelFor="@id/edit_title"/>
+
+    <EditText
+        android:id="@+id/edit_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/user_name_text"
+        app:layout_constraintTop_toBottomOf="@id/user_name_text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/user_level_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Is Admin: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_user_name"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:labelFor="@id/edit_artist" />
-
+    <CheckBox
+        android:id="@+id/user_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/user_level_text"
+        app:layout_constraintTop_toBottomOf="@id/edit_user_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="text"/>
 
 
     <Button
-        android:id="@+id/upload"
+        android:id="@+id/update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/upload"/>
+        android:text="Update"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
