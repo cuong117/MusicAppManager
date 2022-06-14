@@ -108,10 +108,10 @@ public class FormUserFragment extends Fragment {
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             Log.v("data", snapshot.getRef().child("name").toString());
                                             snapshot.getRef().child("name").setValue(user.getName());
-                                            if (user.isAdmin()== true) {
-                                            snapshot.getRef().child("isAdmin").setValue(true);
+                                            if (level.isChecked()== true) {
+                                            snapshot.getRef().child("admin").setValue(true);
                                             } else {
-                                                snapshot.getRef().child("isAdmin").setValue(false);
+                                                snapshot.getRef().child("admin").setValue(false);
                                             }
                                             Toast.makeText(getContext(), "Update success!", Toast.LENGTH_SHORT).show();
                                         }
