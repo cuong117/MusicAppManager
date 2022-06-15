@@ -56,6 +56,7 @@ public class UserFragment extends Fragment {
     private ListView userList;
     private UserFragmentBinding binding;
     private DatabaseReference db;
+    private UserAdapter adapter;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -64,6 +65,8 @@ public class UserFragment extends Fragment {
 
         binding = UserFragmentBinding.inflate(inflater, container, false);
         userList = binding.userList;
+        adapter = new UserAdapter(getContext(), new ArrayList<>());
+        userList.setAdapter(adapter);
         getUser();
         return binding.getRoot();
 
@@ -126,12 +129,12 @@ public class UserFragment extends Fragment {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                users.clear();
+                adapter.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     User user = postSnapshot.getValue(User.class);
-                    users.add(user);
+                    adapter.insert(user, adapter.getCount());
                 }
-                userList.setAdapter(new UserAdapter(getContext(), users));
+                adapter.notifyDataSetChanged();
                 if (progressDialog != null && progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
