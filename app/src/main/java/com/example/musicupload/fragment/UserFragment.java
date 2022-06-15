@@ -57,14 +57,35 @@ public class UserFragment extends Fragment {
     private UserFragmentBinding binding;
     private DatabaseReference db;
     private UserAdapter adapter;
+    String cur_user;
+    String cur_pass;
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
+
         binding = UserFragmentBinding.inflate(inflater, container, false);
         userList = binding.userList;
+        cur_user = fAuth.getCurrentUser().getEmail();
+        DatabaseReference db = FirebaseDatabase.getInstance()
+                .getReference().child("user")
+                .child(FirebaseAuth.getInstance()
+                        .getCurrentUser().getUid());
+        db.child("pass").getRef().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                cur_pass = snapshot.getValue(String.class);
+                Log.v("pass", cur_pass);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         adapter = new UserAdapter(getContext(), new ArrayList<>());
         userList.setAdapter(adapter);
         getUser();
@@ -77,31 +98,33 @@ public class UserFragment extends Fragment {
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                FirebaseUser cur_user = FirebaseAuth.getInstance().getCurrentUser();
                 User user = (User) adapterView.getItemAtPosition(i);
                 String email = user.getEmail();
                 if (view.getId() == R.id.img_user_update){
                     switchToFormUpdate(user);
                 } else if (view.getId() == R.id.img_user_delete){
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("Delete user?")
-                            .setMessage("Are you sure you want to delete this user?")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    deleteUser(email, user.getPass());
-
-                                }
-                            })
-                            .setNegativeButton(android.R.string.no, null)
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
+                    if (email.equalsIgnoreCase(cur_user)) {
+                        Toast.makeText(getContext(), "Can't delete your own account!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Delete user?")
+                                .setMessage("Are you sure you want to delete this user?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        deleteUser(email, user.getPass());
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
                 }
             }
         });
     }
 
     public void deleteUser(String email, String password) {
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+
         fAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -112,12 +135,20 @@ public class UserFragment extends Fragment {
                             delete_user.delete();
                             db.removeValue();
                         }
-                        }
-                    });
+                    }
+                });
+
     }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        fAuth.signInWithEmailAndPassword(cur_user, cur_pass)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.v("user", FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+                    }
+                });
         binding = null;
     }
     private void getUser(){

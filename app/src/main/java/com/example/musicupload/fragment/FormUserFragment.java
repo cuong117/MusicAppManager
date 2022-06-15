@@ -52,6 +52,7 @@ public class FormUserFragment extends Fragment {
     private StorageTask task;
     private DatabaseReference db;
     private User user;
+    private String cur_user;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -63,6 +64,8 @@ public class FormUserFragment extends Fragment {
         email = binding.email;
         level = binding.userLevel;
         update = binding.update;
+        cur_user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
         db = FirebaseDatabase.getInstance().getReference().child("user");
         store = FirebaseStorage.getInstance().getReference().child("user");
         getParentFragmentManager().setFragmentResultListener("user",this, new FragmentResultListener(){
@@ -77,6 +80,9 @@ public class FormUserFragment extends Fragment {
                 level.setChecked(false);
                 if (_level == true) {
                     level.setChecked(true);
+                }
+                if (cur_user.equalsIgnoreCase(_email)) {
+                    level.setEnabled(false);
                 }
 
             }
