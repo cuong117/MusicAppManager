@@ -65,7 +65,7 @@ public class FormUploadFragment extends Fragment {
         getParentFragmentManager().setFragmentResultListener("info",this, new FragmentResultListener(){
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                Log.v("send", "aaaaa");
+                Log.v("send", result.toString());
                 String _title = result.getString("title");
                 String _subTitle = result.getString("subTitle");
                 title.setText(_title);

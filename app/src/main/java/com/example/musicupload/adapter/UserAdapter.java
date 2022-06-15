@@ -52,6 +52,12 @@ public class UserAdapter extends ArrayAdapter<User> {
                 ((ListView) parent).performItemClick(view, position, 0);
             }
         });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ListView) parent).performItemClick(view, position, 0);
+            }
+        });
         return view;
     }
 }

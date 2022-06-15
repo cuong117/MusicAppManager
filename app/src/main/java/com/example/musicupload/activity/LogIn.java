@@ -1,6 +1,9 @@
 package com.example.musicupload.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -43,40 +46,50 @@ public class LogIn extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog progressDialog = ProgressDialog.show(
+                        LogIn.this, null, null, false, false
+                );
+                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                progressDialog.getWindow().setContentView(R.layout.progress_bar);
+                progressDialog.show();
                 //check user
                 if (isValid(email.getText().toString(), password.getText().toString())) {
                     fAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                                       @Override
-                                                       public void onComplete(@NonNull Task<AuthResult> task) {
-                                                           if (task.isSuccessful()) {
-                                                               DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("user").child(fAuth.getCurrentUser().getUid());
-                                                                db.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                                    @Override
-                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                        User user =snapshot.getValue(User.class);
-                                                                        Log.v("Account", String.valueOf(user.isAdmin()));
-                                                                        if (user.isAdmin() == true) {
-                                                                            startActivity(new Intent(LogIn.this, MainActivity.class));
-                                                                            finish();
-                                                                        } else {
-                                                                            Toast.makeText(LogIn.this, "User is not admin!", Toast.LENGTH_SHORT).show();
-                                                                        }
-                                                                    }
+                               @Override
+                               public void onComplete(@NonNull Task<AuthResult> task) {
+                                   if (task.isSuccessful()) {
+                                       DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("user").child(fAuth.getCurrentUser().getUid());
+                                        db.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                User user =snapshot.getValue(User.class);
+                                                if (user.isAdmin() == true) {
+                                                    startActivity(new Intent(LogIn.this, MainActivity.class));
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(LogIn.this, "User is not admin!", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
 
-                                                                    @Override
-                                                                    public void onCancelled(@NonNull DatabaseError error) {
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
 
-                                                                    }
-                                                                });
-                                                           } else {
-                                                               Toast.makeText(LogIn.this, "No user exist!", Toast.LENGTH_SHORT).show();
-                                                           }
-                                                       }
-                                                   }
-                            );
+                                            }
+                                        });
+                                   } else {
+                                       Toast.makeText(LogIn.this, "email or password is wrong!", Toast.LENGTH_SHORT).show();
+                                   }
+                                   if (progressDialog.isShowing()){
+                                       progressDialog.dismiss();
+                                   }
+                               }
+                           });
 
                 } else {
+                    if (progressDialog.isShowing()){
+                        progressDialog.dismiss();
+                    }
                     Toast.makeText(LogIn.this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
                 }
             }
