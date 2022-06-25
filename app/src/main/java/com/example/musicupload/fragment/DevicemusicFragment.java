@@ -32,6 +32,7 @@ import com.example.musicupload.models.Song;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class DevicemusicFragment extends Fragment {
@@ -137,7 +138,10 @@ public class DevicemusicFragment extends Fragment {
 //            Uri audioUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
 //                    cursor.getInt(path));
             do{
-                songs.add(new Song(cursor.getString(title), cursor.getString(artist), cursor.getString(path)));
+                String uriSong = cursor.getString(path);
+                if (!uriSong.toLowerCase().contains("recorder")){
+                    songs.add(new Song(cursor.getString(title), cursor.getString(artist), uriSong));
+                }
             }while (cursor.moveToNext());
             cursor.close();
         }
