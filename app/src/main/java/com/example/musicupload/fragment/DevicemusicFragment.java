@@ -139,7 +139,7 @@ public class DevicemusicFragment extends Fragment {
 //                    cursor.getInt(path));
             do{
                 String uriSong = cursor.getString(path);
-                if (!uriSong.toLowerCase().contains("recorder")){
+                if (!uriSong.toLowerCase().contains("record")){
                     songs.add(new Song(cursor.getString(title), cursor.getString(artist), uriSong));
                 }
             }while (cursor.moveToNext());
