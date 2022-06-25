@@ -5,6 +5,7 @@ import android.content.ContentUris;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -112,8 +114,21 @@ public class DevicemusicFragment extends Fragment {
     private SongAdapter getMusic(){
         ContentResolver contentResolver = ((MainActivity)getActivity()).getContentResolver();
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        Cursor cursor = contentResolver.query(uri, null, MediaStore.Audio.Media.IS_MUSIC + "!= 0"
-                , null, MediaStore.Audio.Media.TITLE + " ASC");
+        Cursor cursor = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            Log.v("version1", "S");
+            cursor = contentResolver.query(uri, null, MediaStore.Audio.Media.IS_MUSIC + "!= 0 and " +
+
+                    MediaStore.Audio.Media.IS_ALARM + " = 0 and " + MediaStore.Audio.Media.IS_RECORDING + " = 0 and " +
+                    MediaStore.Audio.Media.IS_NOTIFICATION + " = 0 and " + MediaStore.Audio.Media.IS_RINGTONE + " = 0"
+                    , null, MediaStore.Audio.Media.TITLE + " ASC");
+        } else {
+            Log.v("version1", "not S");
+            cursor = contentResolver.query(uri, null, MediaStore.Audio.Media.IS_MUSIC + "!= 0 and " +
+                            MediaStore.Audio.Media.IS_ALARM + " = 0 and " +
+                            MediaStore.Audio.Media.IS_NOTIFICATION + " = 0 and " + MediaStore.Audio.Media.IS_RINGTONE + " = 0"
+                    , null, MediaStore.Audio.Media.TITLE + " ASC");
+        }
         List<Song> songs = new ArrayList<>();
         if (cursor != null && cursor.moveToFirst()){
             int title =cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
@@ -128,6 +143,7 @@ public class DevicemusicFragment extends Fragment {
         }
         return new SongAdapter(getContext(), songs);
     }
+
 
     public void setSongList(){
         songList.setAdapter(getMusic());
